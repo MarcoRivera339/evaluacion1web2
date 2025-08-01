@@ -1,0 +1,39 @@
+<h1 class="text-2xl font-bold text-gray-800 mb-4 dark:text-white">Lista de Tareas</h1>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-300">
+            <tr>
+                <th scope="col" class="px-6 py-3">Nombre</th>
+                <th scope="col" class="px-6 py-3">Fecha</th>
+                <th scope="col" class="px-6 py-3 text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (tarea of tareas; track tarea.nombre) {
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ tarea.nombre }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ tarea.fecha }}
+                </td>
+                <td class="px-6 py-4 flex gap-2 justify-center">
+                    <button (click)="eliminarTarea(tarea.id)"
+                        class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-4 py-2 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                        Eliminar
+                    </button>
+                    <a [routerLink]="['/editar-tarea', tarea.id]"
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-2 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                        Editar
+                    </a>
+                    <button [routerLink]="['/detalle', tarea.id]"
+                        class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-4 py-2 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                        Ver Detalles
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
